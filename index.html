@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>D3 World Map</title>
+    <style>
+      path {
+        stroke: white;
+        stroke-width: 0.5px;
+        fill: black;
+      }
+    </style>
+    <!--script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v0.min.js"></script-->
+  </head>
+  <body>
+    <!--script type="text/javascript">
+      var width = 1000;
+      var height = 700;
+
+      var projection = d3.geo.mercator();
+      
+      var svg = d3.select("body").append("svg")
+          .attr("width", width)
+          .attr("height", height);
+      var path = d3.geo.path()
+          .projection(projection);
+      var g = svg.append("g");
+      
+      d3.json("world-110m2.json", function(error, topology) {
+          g.selectAll("path")
+            .data(topojson.object(topology, topology.objects.countries)
+                .geometries)
+          .enter()
+            .append("path")
+            .attr("d", path)
+      });
+    </script-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+    <script src="node_modules/datamaps/dist/datamaps.world.hires.min.js"></script>
+    <div id="container" style="position: relative; width: 90vw; height: 90vh;"></div>
+    <script>
+        var map = new Datamap({element: document.getElementById('container')});
+
+        map.updateChoropleth({
+   USA: {fillKey: 'LOW'},
+   CAN: '#0fa0fa'
+});
+    </script>
+  </body>
+</html>
