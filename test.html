@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div {
+  display: -webkit-box;
+  overflow : hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  height: 4em;
+  width: 25em;
+  border: 2px;
+}
+
+.multiline-ellipsis {
+    display: block;
+    display: -webkit-box;
+    max-width: 25em;
+    height: 4em;
+    margin: 0 auto;
+    //font-size: 26px;
+    line-height: 1.4;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+	border: 2px;
+}
+
+p {
+	border: 2px;
+}
+</style>
+</head>
+<body>
+
+<div>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into 
+electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
+and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
+
+
+<p class="multiline-ellipsis">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into 
+electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
+and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+
+https://revelry.co/multi-line-ellipsis-using-pure-css/
+
+</body>
+</html>
+
+
+            // changes made to handle download issue in chrome to see if this code benefits 
+            setTimeout(function () {
+                let blob = new Blob([response.csvFile], { type: 'text/csv;charset=utf-8;' });
+                //let mimeType = mimeType || 'application/octet-stream';
+                if (navigator.msSaveBlob) { // IE 10+
+                    //navigator.msSaveBlob(blob, {type: 'application/octet-stream'}), filename);
+                } else {
+                    let link = document.createElement("a");
+                    if (link.download !== undefined) { // feature detection
+                        // Browsers that support HTML5 download attribute
+                        link.setAttribute("href", url);
+                        link.setAttribute("download", fileName + '.csv');
+                        link.style.visibility = 'hidden';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }
+                }
+            }, 200);
